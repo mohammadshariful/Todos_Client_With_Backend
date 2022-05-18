@@ -8,7 +8,7 @@ const SingleTodo = ({ todo, refetch }) => {
   const handleDelete = (id) => {
     const process = window.confirm("Are You sure want to delete?");
     if (process) {
-      const url = `http://localhost:5000/todos/${id}`;
+      const url = `https://mytodoapp2022.herokuapp.com/todos/${id}`;
       fetch(url, {
         method: "DELETE",
         headers: {
@@ -28,7 +28,7 @@ const SingleTodo = ({ todo, refetch }) => {
   };
   // handle task completed
   const handleTaskComplete = (id) => {
-    const url = `http://localhost:5000/todos/${id}`;
+    const url = `https://mytodoapp2022.herokuapp.com/todos/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {

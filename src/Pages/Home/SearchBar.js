@@ -18,7 +18,7 @@ const SearchBar = ({ refetch }) => {
       email: user?.email,
     };
     //send data server
-    const url = `http://localhost:5000/todos`;
+    const url = `https://mytodoapp2022.herokuapp.com/todos`;
     fetch(url, {
       method: "POST",
       headers: {

@@ -8,7 +8,7 @@ import SingleTodo from "./SingleTodo";
 
 const Home = () => {
   const [user] = useAuthState(auth);
-  const url = `http://localhost:5000/todos?email=${user?.email}`;
+  const url = `https://mytodoapp2022.herokuapp.com/todos?email=${user?.email}`;
   const {
     data: todos,
     isLoading,
