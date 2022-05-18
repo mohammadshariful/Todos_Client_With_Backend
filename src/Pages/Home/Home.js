@@ -1,12 +1,28 @@
 import React from "react";
+import { useQuery } from "react-query";
 import SearchBar from "./SearchBar";
-import Todos from "./Todos";
+import SingleTodo from "./SingleTodo";
 
 const Home = () => {
+  const {
+    data: todos,
+    isLoading,
+    refetch,
+  } = useQuery("todos", () =>
+    fetch("http://localhost:5000/todos").then((res) => res.json())
+  );
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
   return (
     <div className="w-[90%] mx-auto">
-      <SearchBar />
-      <Todos />
+      <SearchBar refetch={refetch} />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 justify-items-center">
+        {todos?.map((todo) => (
+          <SingleTodo key={todo._id} todo={todo} refetch={refetch} />
+        ))}
+      </div>
     </div>
   );
 };

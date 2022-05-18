@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-const SearchBar = () => {
+const SearchBar = ({ refetch }) => {
   const {
     register,
     reset,
@@ -24,7 +24,8 @@ const SearchBar = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        reset();
+        refetch();
       });
   };
   return (
