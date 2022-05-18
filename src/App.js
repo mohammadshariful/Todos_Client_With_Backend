@@ -1,7 +1,18 @@
+import { Route, Routes } from "react-router-dom";
+import Home from "./Pages/Home/Home";
+import Login from "./Pages/Login/Login";
+import Signup from "./Pages/Login/Signup";
+import Navbar from "./Pages/Shared/Navbar";
+
 function App() {
   return (
     <div>
-      <h1 className="text-center text-primary">hello world</h1>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
     </div>
   );
 }
