@@ -3,6 +3,7 @@ import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../Firebase.init";
+import SocailLogin from "../Shared/SocailLogin";
 const Login = () => {
   const {
     register,
@@ -110,6 +111,7 @@ const Login = () => {
               Create a New Account
             </Link>
           </p>
+          <SocailLogin />
         </div>
       </div>
     </div>

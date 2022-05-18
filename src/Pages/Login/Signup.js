@@ -6,6 +6,7 @@ import {
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import auth from "../../Firebase.init.js";
+import SocailLogin from "../Shared/SocailLogin.js";
 const Signup = () => {
   const {
     register,
@@ -131,6 +132,7 @@ const Signup = () => {
               Please Login
             </Link>
           </p>
+          <SocailLogin />
         </div>
       </div>
     </div>
