@@ -12,7 +12,7 @@ const SocailLogin = () => {
     if (user) {
       navigate(from, { replace: true });
     }
-  }, [user]);
+  }, [user, navigate, from]);
   if (loading) {
     return <Loading />;
   }
