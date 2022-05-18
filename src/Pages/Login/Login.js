@@ -88,12 +88,6 @@ const Login = () => {
               value="Login"
             />
           </form>
-          <label
-            htmlFor="forgetPasswordModal"
-            className="modal-button text-right text-primary cursor-pointer"
-          >
-            Forget your password?
-          </label>
           <p>
             New to Todo App user?
             <Link className="text-primary" to="/signup">

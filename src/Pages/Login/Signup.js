@@ -1,13 +1,29 @@
 import React from "react";
+import {
+  useCreateUserWithEmailAndPassword,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import auth from "../../Firebase.init.js";
 const Signup = () => {
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const onSubmit = async (data) => {};
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+  const onSubmit = async (data) => {
+    await createUserWithEmailAndPassword(data.email, data.password);
+    await updateProfile({ displayName: data.name });
+  };
+
+  if (loading || updating) {
+    return <p>Loading</p>;
+  }
+
   return (
     <div className="flex h-screen justify-center items-center">
       <div className="card w-96 bg-base-100 shadow-xl">
