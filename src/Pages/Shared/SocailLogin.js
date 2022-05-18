@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { useLocation, useNavigate } from "react-router-dom";
 import auth from "../../Firebase.init";
+import Loading from "./Loading";
 const SocailLogin = () => {
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ const SocailLogin = () => {
     }
   }, [user]);
   if (loading) {
-    return <p>Loading..</p>;
+    return <Loading />;
   }
   return (
     <div className="text-center">

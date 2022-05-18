@@ -1,5 +1,6 @@
 import React from "react";
 import { useQuery } from "react-query";
+import Loading from "../Shared/Loading";
 import SearchBar from "./SearchBar";
 import SingleTodo from "./SingleTodo";
 
@@ -13,7 +14,7 @@ const Home = () => {
   );
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
   return (
     <div className="w-[90%] mx-auto">

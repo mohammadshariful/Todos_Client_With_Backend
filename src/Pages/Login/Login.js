@@ -3,6 +3,7 @@ import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../Firebase.init";
+import Loading from "../Shared/Loading";
 import SocailLogin from "../Shared/SocailLogin";
 const Login = () => {
   const {
@@ -26,7 +27,7 @@ const Login = () => {
   };
 
   if (loading) {
-    return <p>Loading</p>;
+    return <Loading />;
   }
   return (
     <div className="flex h-screen justify-center items-center">

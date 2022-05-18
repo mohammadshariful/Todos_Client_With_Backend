@@ -6,6 +6,7 @@ import {
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import auth from "../../Firebase.init.js";
+import Loading from "../Shared/Loading.js";
 import SocailLogin from "../Shared/SocailLogin.js";
 const Signup = () => {
   const {
@@ -22,7 +23,7 @@ const Signup = () => {
   };
 
   if (loading || updating) {
-    return <p>Loading</p>;
+    return <Loading />;
   }
 
   return (
