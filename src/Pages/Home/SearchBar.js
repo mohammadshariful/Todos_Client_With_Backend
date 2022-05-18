@@ -9,8 +9,23 @@ const SearchBar = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
-    reset();
+    const todo = {
+      name: data.name,
+      description: data.description,
+    };
+    //send data server
+    const url = `http://localhost:5000/todos`;
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(todo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
   return (
     <div className="flex justify-center">
