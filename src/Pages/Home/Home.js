@@ -1,17 +1,19 @@
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
+import auth from "../../Firebase.init";
 import Loading from "../Shared/Loading";
 import SearchBar from "./SearchBar";
 import SingleTodo from "./SingleTodo";
 
 const Home = () => {
+  const [user] = useAuthState(auth);
+  const url = `http://localhost:5000/todos?email=${user?.email}`;
   const {
     data: todos,
     isLoading,
     refetch,
-  } = useQuery("todos", () =>
-    fetch("http://localhost:5000/todos").then((res) => res.json())
-  );
+  } = useQuery("todos", () => fetch(url).then((res) => res.json()));
 
   if (isLoading) {
     return <Loading />;

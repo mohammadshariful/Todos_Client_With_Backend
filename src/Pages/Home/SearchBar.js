@@ -1,5 +1,7 @@
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
+import auth from "../../Firebase.init";
 const SearchBar = ({ refetch }) => {
   const {
     register,
@@ -7,11 +9,13 @@ const SearchBar = ({ refetch }) => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const [user] = useAuthState(auth);
 
   const onSubmit = (data) => {
     const todo = {
       name: data.name,
       description: data.description,
+      email: user?.email,
     };
     //send data server
     const url = `http://localhost:5000/todos`;
