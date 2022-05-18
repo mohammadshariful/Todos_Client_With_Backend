@@ -118,9 +118,9 @@ const Signup = () => {
                 )}
               </label>
             </div>
-
+            {error && <p className="text-error mb-2">{error.message}</p>}
             <input
-              className="btn w-full max-w-xs text-white"
+              className="btn btn-primary w-full max-w-xs text-white"
               type="submit"
               value="Sign up"
             />

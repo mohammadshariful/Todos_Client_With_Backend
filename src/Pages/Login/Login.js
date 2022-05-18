@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import auth from "../../Firebase.init";
 const Login = () => {
   const {
     register,
@@ -8,14 +10,28 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+  const navigate = useNavigate();
 
-  const onSubmit = (data) => {};
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user]);
+
+  const onSubmit = (data) => {
+    signInWithEmailAndPassword(data.email, data.password);
+  };
+
+  if (loading) {
+    return <p>Loading</p>;
+  }
   return (
     <div className="flex h-screen justify-center items-center">
       <div className="card w-96 bg-base-100 shadow-xl">
         <div className="card-body">
           <h2 className="text-center text-2xl font-bold">Login</h2>
-
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="form-control w-full max-w-xs">
               <label className="label">
@@ -81,9 +97,9 @@ const Login = () => {
                 )}
               </label>
             </div>
-
+            {error && <p className="text-error mb-2">{error.message}</p>}
             <input
-              className="btn w-full max-w-xs text-white"
+              className="btn btn-primary w-full max-w-xs text-white"
               type="submit"
               value="Login"
             />
